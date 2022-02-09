@@ -18,8 +18,11 @@ export default function App() {
 
           for (let i = 0; i < data.results.length; i++) {
             newArray.push({
-              ...data.results[i],
               id: nanoid(),
+              question: data.results[i].question,
+              correct_answer: data.results[i].correct_answer,
+              answers: [...data.results[i].incorrect_answers, data.results[i].correct_answer],
+              select_answer: '',
               isCorrect: false
             })
           }
@@ -36,14 +39,17 @@ export default function App() {
     setStartGame(prevStartGame => !prevStartGame)
   }
 
-  function selectAnswer(e, c_answer) {
-    console.log(e.target);
-    if(c_answer) {
-      console.log('CERTA A RESPOSTA')
-    }
+  function selectAnswer(e, id) {
+    const { name, value, type } = e.target
+
+    setQuestions(prevQuestions => prevQuestions.map(question => {
+      return question.id === id ?
+        { ...question, [question.select_answer]: value } :
+        question
+    }))
   }
 
-  const questionsElement = questions.map(question => ([<Question key={question.id} data={question} answerClick={(e) => selectAnswer(e, question.id)} />]))
+  const questionsElement = questions.map(question => ([<Question key={question.id} data={question} handleChange={selectAnswer} />]))
 
   return (
     <div>
