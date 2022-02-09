@@ -9,8 +9,9 @@ export default function Question(props) {
           isHeld: false,
           isCorrect: false
     */
-    const answers = props.data.i_answer.map(i_answers => <button key={i_answers} onClick={props.answerClick}>{i_answers}</button>)
-    answers.splice((Math.ceil(Math.random() * 4)), 0, <button key={props.data.c_answer} id={props.data.c_answer}>{props.data.c_answer}</button>)
+    const c_answer = props.data.correct_answer
+    const answers = props.data.incorrect_answers
+    answers.splice((Math.ceil(Math.random() * 4)), 0, c_answer)
 
     return (
         <div>

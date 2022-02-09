@@ -13,27 +13,37 @@ export default function App() {
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
       .then(res => res.json())
       .then(data => {
-        setQuestions(() => ({
-          question: data.results.question,
-          i_answer: data.results.incorrect_answers,
-          c_answer: data.results.correct_answer,
-          difficulty: data.results.difficulty,
-          isHeld: false,
-          isCorrect: false
-        }))
+        setQuestions(() => {
+          let newArray = []
+
+          for (let i = 0; i < data.results.length; i++) {
+            newArray.push({
+              ...data.results[i],
+              id: nanoid(),
+              isCorrect: false
+            })
+          }
+
+          return newArray
+        })
       })
   }, [startGame])
+
+  console.log(questions)
 
   // Functions
   function startGameHandle() {
     setStartGame(prevStartGame => !prevStartGame)
   }
 
-  function selectAnswer() {
-    console.log("select");
+  function selectAnswer(e, c_answer) {
+    console.log(e.target);
+    if(c_answer) {
+      console.log('CERTA A RESPOSTA')
+    }
   }
 
-  const questionsElement = questions.map(question => (<Question key={nanoid()} data={question} answerClick={selectAnswer} />))
+  const questionsElement = questions.map(question => ([<Question key={question.id} data={question} answerClick={(e) => selectAnswer(e, question.id)} />]))
 
   return (
     <div>
