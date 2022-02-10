@@ -1,0 +1,106 @@
+* {
+    font-family: "Inter", sans-serif;
+    color: #293264;
+}
+
+html,
+body {
+    margin: 0;
+}
+
+/* All */
+.app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #f5f7fb;
+    height: 100vh;
+}
+
+.btn-quiz {
+    color: #f5f7fb;
+    font-size: 16px;
+    font-weight: 500;
+
+    border-radius: 15px;
+    padding: 1rem 2rem;
+    border: 1px solid transparent;
+    background: #4d5b9e;
+    cursor: pointer;
+
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+.btn-quiz:hover {
+    color: #4d5b9e;
+    border-color: #4d5b9e;
+    background: #f5f7fb;
+
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+/* Start Screen */
+.startScreen {
+    text-align: center;
+}
+
+.startScreen h1 {
+    font-family: "Karla", sans-serif;
+    font-size: 36px;
+    line-height: 19.36px;
+    font-weight: 700;
+}
+
+.startScreen p {
+    font-size: 18px;
+}
+
+/* Questions Screen */
+.questionDiv {
+    border-bottom: 0.794239px solid #dbdef0;
+    padding: 1.5rem 0;
+}
+
+.questionDiv h2 {
+    margin-top: 0;
+}
+
+.questionDiv .questionSelect {
+    margin-bottom: .85rem;
+}
+
+.questionDiv .questionSelect label {
+    cursor: pointer;
+    border-radius: 12px;
+    margin-right: 1.5rem;
+    padding: 0.5rem 1.25rem;
+    border: 0.79px solid #4d5b9e;
+
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.questionDiv .questionSelect input:checked + label {
+    background: #d6dbf5;
+    border-color: transparent;
+}
+
+.questionDiv .questionSelect [type="radio"]:checked,
+.questionDiv .questionSelect [type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+/* Buttons */
+.checkAnswers {
+    margin-top: 2rem;
+    text-align: center;
+}
