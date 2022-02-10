@@ -8,10 +8,13 @@ export default function App() {
   // Variables
   const [startGame, setStartGame] = useState(false)
   const [newGame, setNewGame] = useState(false)
+  const [playAgain, setPlayAgain] = useState(false)
+
   const [questions, setQuestions] = useState([])
+  const [correctCount, setCorrectCount] = useState(0)
 
   useEffect(() => {
-    fetch("https://opentdb.com/api.php?amount=5&type=multiple")
+    fetch("https://opentdb.com/api.php?amount=5&type=multiple&encode=base64")
       .then(res => res.json())
       .then(data => {
         setQuestions(() => {
@@ -20,9 +23,12 @@ export default function App() {
           for (let i = 0; i < data.results.length; i++) {
             newArray.push({
               id: nanoid(),
-              question: data.results[i].question,
-              correct_answer: data.results[i].correct_answer,
-              answers: [...data.results[i].incorrect_answers, data.results[i].correct_answer],
+              question: atob(data.results[i].question),
+              correct_answer: atob(data.results[i].correct_answer),
+              answers: [
+                ...data.results[i].incorrect_answers.map(incorrect => atob(incorrect)),
+                atob(data.results[i].correct_answer)
+              ],
               select_answer: '',
               isCorrect: false
             })
@@ -33,7 +39,7 @@ export default function App() {
       })
   }, [newGame])
 
-  console.log(questions)
+  // console.log(questions)
 
   // Functions
   function startGameHandle() {
@@ -50,10 +56,30 @@ export default function App() {
     }))
   }
 
+  function checkAnswers() {
+    for (let i = 0; i < questions.length; i++) {
+      if (questions[i].select_answer != "") {
+        if (questions[i].isCorrect) {
+          setCorrectCount(prevCount => prevCount + 1)
+        }
+      } else {
+        setCorrectCount(0)
+        return
+      }
+    }
+    setPlayAgain(true)
+  }
+
+  function handlePlayAgain() {
+    setPlayAgain(false)
+    setNewGame(prevGame => !prevGame)
+    setCorrectCount(0)
+  }
+
   const questionsElement = questions.map(question => ([<Question key={question.id} data={question} handleChange={selectAnswer} />]))
 
   return (
-    <div>
+    <div className="app">
       {
         !startGame
           ?
@@ -61,6 +87,19 @@ export default function App() {
           :
           <div>
             {questionsElement}
+
+            {
+              !playAgain
+                ?
+                <div className="checkAnswers">
+                  <button className="btn-quiz" onClick={checkAnswers}>Check Answers</button>
+                </div>
+                :
+                <div className="checkAnswers">
+                  You scored {correctCount}/5 correct answers
+                  <button className="btn-quiz" onClick={handlePlayAgain}>Play again</button>
+                </div>
+            }
           </div>
       }
     </div>
