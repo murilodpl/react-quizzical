@@ -7,6 +7,7 @@ import Start from "./components/Start"
 export default function App() {
   // Variables
   const [startGame, setStartGame] = useState(false)
+  const [newGame, setNewGame] = useState(false)
   const [questions, setQuestions] = useState([])
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export default function App() {
           return newArray
         })
       })
-  }, [startGame])
+  }, [newGame])
 
   console.log(questions)
 
@@ -39,12 +40,12 @@ export default function App() {
     setStartGame(prevStartGame => !prevStartGame)
   }
 
-  function selectAnswer(e, id) {
-    const { name, value, type } = e.target
+  function selectAnswer(e, c_answer, id) {
+    const { value } = e.target
 
-    setQuestions(prevQuestions => prevQuestions.map(question => {
+    setQuestions(oldQuestion => oldQuestion.map(question => {
       return question.id === id ?
-        { ...question, [question.select_answer]: value } :
+        { ...question, select_answer: value, isCorrect: value === c_answer ? true : false } :
         question
     }))
   }
