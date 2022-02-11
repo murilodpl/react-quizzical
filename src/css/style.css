@@ -8,7 +8,6 @@ body {
     margin: 0;
 }
 
-/* All */
 .app {
     display: flex;
     justify-content: center;
@@ -16,32 +15,6 @@ body {
     flex-direction: column;
     background: #f5f7fb;
     height: 100vh;
-}
-
-.btn-quiz {
-    color: #f5f7fb;
-    font-size: 16px;
-    font-weight: 500;
-
-    border-radius: 15px;
-    padding: 1rem 2rem;
-    border: 1px solid transparent;
-    background: #4d5b9e;
-    cursor: pointer;
-
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-}
-
-.btn-quiz:hover {
-    color: #4d5b9e;
-    border-color: #4d5b9e;
-    background: #f5f7fb;
-
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
 }
 
 /* Start Screen */
@@ -71,7 +44,7 @@ body {
 }
 
 .questionDiv .questionSelect {
-    margin-bottom: .85rem;
+    margin-bottom: 0.85rem;
 }
 
 .questionDiv .questionSelect label {
@@ -90,6 +63,11 @@ body {
     border-color: transparent;
 }
 
+.questionDiv .questionSelect .correctAnswer input + label {
+    background: #94D7A2;
+    border-color: transparent;
+}
+
 .questionDiv .questionSelect [type="radio"]:checked,
 .questionDiv .questionSelect [type="radio"]:not(:checked) {
     position: absolute;
@@ -100,6 +78,32 @@ body {
 }
 
 /* Buttons */
+.btn-quiz {
+    color: #f5f7fb;
+    font-size: 16px;
+    font-weight: 500;
+
+    border-radius: 15px;
+    padding: 1rem 2rem;
+    border: 1px solid transparent;
+    background: #4d5b9e;
+    cursor: pointer;
+
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+.btn-quiz:hover {
+    color: #4d5b9e;
+    border-color: #4d5b9e;
+    background: #f5f7fb;
+
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
 .checkAnswers {
     margin-top: 2rem;
     text-align: center;

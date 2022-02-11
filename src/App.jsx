@@ -76,7 +76,7 @@ export default function App() {
     setCorrectCount(0)
   }
 
-  const questionsElement = questions.map(question => ([<Question key={question.id} data={question} handleChange={selectAnswer} />]))
+  const questionsElement = questions.map(question => ([<Question key={question.id} data={question} handleChange={selectAnswer} playAgain={playAgain} />]))
 
   return (
     <div className="app">
