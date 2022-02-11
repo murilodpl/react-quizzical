@@ -14,8 +14,8 @@ export default function Question(props) {
 
     const optionsAnswers = answers.map(answer =>
         <span key={answer} className={(c_answer == answer && props.playAgain) ? 'correctAnswer' : ''}>
-            <input type="radio" disabled={props.playAgain ? true : false} checked={props.data.select_answer === answer} onChange={(e) => props.handleChange(e, c_answer, props.data.id)} value={answer} id={answer} name={props.data.id} />
-            <label htmlFor={answer}>{answer}</label>
+            <input type="radio" disabled={props.playAgain ? true : false} checked={props.data.select_answer === answer} onChange={(e) => props.handleChange(e, c_answer, props.data.id)} value={answer} id={props.data.id + answer} name={props.data.id} />
+            <label htmlFor={props.data.id + answer}>{answer}</label>
         </span>)
 
     return (
