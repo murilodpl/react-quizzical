@@ -4,8 +4,12 @@
 }
 
 html,
-body {
+body,
+#root,
+.app {
     margin: 0;
+    height: 100%;
+    background: #f5f7fb;
 }
 
 .app {
@@ -13,8 +17,9 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: #f5f7fb;
-    height: 100vh;
+    height: 100%;
+    width: 70%;
+    margin: auto;
 }
 
 /* Start Screen */
@@ -40,7 +45,8 @@ body {
 }
 
 .questionDiv h2 {
-    margin-top: 0;
+    margin: 0  0 1.4rem;
+    font-size: 20px;
 }
 
 .questionDiv .questionSelect {
@@ -55,7 +61,7 @@ body {
     border: 0.79px solid #4d5b9e;
 
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .questionDiv .questionSelect input:checked + label {
@@ -64,8 +70,16 @@ body {
 }
 
 .questionDiv .questionSelect .correctAnswer input + label {
-    background: #94D7A2;
+    background: #94d7a2;
     border-color: transparent;
+}
+
+.questionDiv .questionSelect span:not(.correctAnswer) input:disabled + label {
+    opacity: 0.5;
+}
+
+.questionDiv .questionSelect.playAgain span:not(.correctAnswer) input:checked + label {
+    background: #f8bcbc;
 }
 
 .questionDiv .questionSelect [type="radio"]:checked,
@@ -75,6 +89,12 @@ body {
     width: 0;
     height: 0;
     visibility: hidden;
+}
+
+.playAgainBtnDiv .score {
+    margin-right: 2rem;
+    font-size: 18px;
+    font-weight: 700;
 }
 
 /* Buttons */
@@ -104,7 +124,8 @@ body {
     transition-duration: 150ms;
 }
 
-.checkAnswers {
+.checkAnswers,
+.playAgainBtnDiv {
     margin-top: 2rem;
     text-align: center;
 }
