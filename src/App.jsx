@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid'
 
 import Question from "./components/Question"
 import Start from "./components/Start"
+import Confetti from 'react-confetti'
 
 export default function App() {
   // Variables
@@ -12,6 +13,9 @@ export default function App() {
 
   const [questions, setQuestions] = useState([])
   const [correctCount, setCorrectCount] = useState(0)
+
+  // Style
+  const correctStyle = { color: (correctCount < 4) ? '#ff0000' : '#00ae24' }
 
   useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5&type=multiple&encode=base64")
@@ -28,7 +32,7 @@ export default function App() {
               answers: [
                 ...data.results[i].incorrect_answers.map(incorrect => atob(incorrect)),
                 atob(data.results[i].correct_answer)
-              ],
+              ].sort(() => Math.random() - 0.5),
               select_answer: '',
               isCorrect: false
             })
@@ -64,6 +68,7 @@ export default function App() {
         }
       } else {
         setCorrectCount(0)
+        alert('Answer all questions!')
         return
       }
     }
@@ -95,8 +100,9 @@ export default function App() {
                   <button className="btn-quiz" onClick={checkAnswers}>Check Answers</button>
                 </div>
                 :
-                <div className="checkAnswers">
-                  You scored {correctCount}/5 correct answers
+                <div className="playAgainBtnDiv">
+                  {correctCount == 5 && <Confetti />}
+                  <span className="score">You scored <span style={correctStyle}>{correctCount}/5</span> correct answers</span>
                   <button className="btn-quiz" onClick={handlePlayAgain}>Play again</button>
                 </div>
             }
