@@ -79,6 +79,7 @@ export default function App() {
     setPlayAgain(false)
     setNewGame(prevGame => !prevGame)
     setCorrectCount(0)
+    window.scrollTo(0, 0)
   }
 
   const questionsElement = questions.map(question => ([<Question key={question.id} data={question} handleChange={selectAnswer} playAgain={playAgain} />]))
