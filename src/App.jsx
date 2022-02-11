@@ -99,7 +99,7 @@ export default function App() {
               !playAgain
                 ?
                 <div className="checkAnswers">
-                  <button className="btn-quiz" onClick={checkAnswers}>Check Answers</button>
+                  {questionsElement.length != 0 && <button className="btn-quiz" onClick={checkAnswers}>Check Answers</button>}
                 </div>
                 :
                 <div className="playAgainBtnDiv">
