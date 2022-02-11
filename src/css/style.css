@@ -1,25 +1,40 @@
 * {
     font-family: "Inter", sans-serif;
     color: #293264;
+    scroll-behavior: smooth;
+}
+
+html {
+    display: flex;
+    height: 100%;
 }
 
 html,
-body,
-#root,
-.app {
-    margin: 0;
-    height: 100%;
+body {
+    margin: auto;
     background: #f5f7fb;
+    z-index: -2;
 }
 
 .app {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-    width: 70%;
     margin: auto;
+    padding: 1rem;
+}
+
+.app::before {
+    content: url("../img/blobYellow.png");
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    right: 0;
+}
+
+.app::after {
+    content: url("../img/blobBlue.png");
+    position: fixed;
+    z-index: -1;
+    bottom: 0;
+    left: 0;
 }
 
 /* Start Screen */
@@ -45,23 +60,29 @@ body,
 }
 
 .questionDiv h2 {
-    margin: 0  0 1.4rem;
+    margin: 0 0 1.4rem;
     font-size: 20px;
 }
 
-.questionDiv .questionSelect {
-    margin-bottom: 0.85rem;
+@media only screen and (min-width: 1000px) {
+    .questionDiv .questionSelect {
+        display: flex;
+    }
+    .questionDiv .questionSelect label {
+        margin: 0 1.5rem 0 0 !important;
+    }
 }
 
 .questionDiv .questionSelect label {
+    font-weight: 500;
+    display: block;
+    font-size: 14px;
+    margin: 1rem 0;
     cursor: pointer;
     border-radius: 12px;
-    margin-right: 1.5rem;
     padding: 0.5rem 1.25rem;
+    background: #f5f7fb;
     border: 0.79px solid #4d5b9e;
-
-    font-weight: 500;
-    font-size: 14px;
 }
 
 .questionDiv .questionSelect input:checked + label {
@@ -92,9 +113,17 @@ body,
 }
 
 .playAgainBtnDiv .score {
-    margin-right: 2rem;
     font-size: 18px;
     font-weight: 700;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+@media only screen and (min-width: 1000px) {
+    .playAgainBtnDiv .score {
+        margin: 0 2rem 0 0 !important;
+        display: unset !important;
+    }
 }
 
 /* Buttons */
