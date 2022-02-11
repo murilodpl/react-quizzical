@@ -43,7 +43,7 @@ export default function App() {
       })
   }, [newGame])
 
-  // console.log(questions)
+  console.log(questions)
 
   // Functions
   function startGameHandle() {
@@ -76,6 +76,7 @@ export default function App() {
   }
 
   function handlePlayAgain() {
+    setQuestions([])
     setPlayAgain(false)
     setNewGame(prevGame => !prevGame)
     setCorrectCount(0)
@@ -92,7 +93,7 @@ export default function App() {
           <Start startGame={startGameHandle} />
           :
           <div>
-            {questionsElement}
+            {questionsElement.length != 0 ? questionsElement : <div class="lds-ripple"><div></div><div></div></div>}
 
             {
               !playAgain
