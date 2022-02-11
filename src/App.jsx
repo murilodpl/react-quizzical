@@ -103,7 +103,7 @@ export default function App() {
                 </div>
                 :
                 <div className="playAgainBtnDiv">
-                  {correctCount > 0 && <Confetti />}
+                  {correctCount > 3 && <Confetti />}
                   <span className="score">You scored <span style={correctStyle}>{correctCount}/5</span> correct answers</span>
                   <button className="btn-quiz" onClick={handlePlayAgain}>Play again</button>
                 </div>
