@@ -18,7 +18,7 @@ export default function App() {
   const correctStyle = { color: (correctCount < 4) ? '#ff0000' : '#00ae24' }
 
   useEffect(() => {
-    fetch("https://opentdb.com/api.php?amount=5&type=multiple&category=20&encode=base64")
+    fetch("https://opentdb.com/api.php?amount=5&type=multiple&category=27&encode=base64")
       .then(res => res.json())
       .then(data => {
         setQuestions(() => {
