@@ -18,7 +18,7 @@ export default function App() {
   const correctStyle = { color: (correctCount < 4) ? '#ff0000' : '#00ae24' }
 
   useEffect(() => {
-    fetch("https://opentdb.com/api.php?amount=5&type=multiple&category=27&encode=base64")
+    fetch("https://opentdb.com/api.php?amount=5&type=multiple&encode=base64")
       .then(res => res.json())
       .then(data => {
         setQuestions(() => {
@@ -103,7 +103,7 @@ export default function App() {
                 </div>
                 :
                 <div className="playAgainBtnDiv">
-                  {correctCount >= 5 && <Confetti />}
+                  {correctCount > 0 && <Confetti />}
                   <span className="score">You scored <span style={correctStyle}>{correctCount}/5</span> correct answers</span>
                   <button className="btn-quiz" onClick={handlePlayAgain}>Play again</button>
                 </div>
