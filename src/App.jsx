@@ -41,12 +41,12 @@ export default function App() {
             })
           }
 
+          console.log(newArray)
           return newArray
         })
       })
-  }, [newGame])
+  }, [newGame, selectApi])
 
-  console.log(questions)
 
   // Functions
   function startGameHandle() {
