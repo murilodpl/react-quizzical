@@ -11,7 +11,7 @@ export default function App() {
   const [newGame, setNewGame] = useState(false)
   const [playAgain, setPlayAgain] = useState(false)
 
-  const [selectApi, setSelectApi] = React.useState({
+  const [selectApi, setSelectApi] = useState({
     category: "0",
     difficulty: "0"
   })
