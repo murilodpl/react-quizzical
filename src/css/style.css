@@ -73,6 +73,7 @@ body {
     .questionDiv .questionSelect {
         display: flex;
     }
+
     .questionDiv .questionSelect label {
         margin: 0 1.5rem 0 0 !important;
     }
@@ -90,21 +91,21 @@ body {
     border: 0.79px solid var(--primary);
 }
 
-.questionDiv .questionSelect input:checked + label {
+.questionDiv .questionSelect input:checked+label {
     background: #d6dbf5;
     border-color: transparent;
 }
 
-.questionDiv .questionSelect .correctAnswer input + label {
+.questionDiv .questionSelect .correctAnswer input+label {
     background: #94d7a2;
     border-color: transparent;
 }
 
-.questionDiv .questionSelect span:not(.correctAnswer) input:disabled + label {
+.questionDiv .questionSelect span:not(.correctAnswer) input:disabled+label {
     opacity: 0.5;
 }
 
-.questionDiv .questionSelect.playAgain span:not(.correctAnswer) input:checked + label {
+.questionDiv .questionSelect.playAgain span:not(.correctAnswer) input:checked+label {
     background: #f8bcbc;
 }
 
@@ -164,6 +165,32 @@ body {
     text-align: center;
 }
 
+/* Select */
+@media only screen and (min-width: 1000px) {
+    .selectDiv {
+        display: flex;
+        column-gap: 1rem
+    }
+}
+
+select {
+    background-color: transparent;
+    width: 100%;
+    border: 1px solid #777;
+    border-radius: 7px;
+    padding: .75rem .25rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    transition-duration: .15s;
+}
+
+select:hover,
+select:focus {
+    border: 1px solid var(--primary);
+}
+
 /* Loading */
 .lds-ripple {
     display: flex;
@@ -172,6 +199,7 @@ body {
     width: 100px;
     height: 100px;
 }
+
 .lds-ripple div {
     position: absolute;
     border: 4px solid var(--primary);
@@ -179,9 +207,11 @@ body {
     border-radius: 50%;
     animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
+
 .lds-ripple div:nth-child(2) {
     animation-delay: -0.5s;
 }
+
 @keyframes lds-ripple {
     0% {
         top: 45px;
@@ -190,6 +220,7 @@ body {
         height: 0;
         opacity: 1;
     }
+
     100% {
         top: 0px;
         left: 0px;
