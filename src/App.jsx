@@ -11,14 +11,17 @@ export default function App() {
   const [newGame, setNewGame] = useState(false)
   const [playAgain, setPlayAgain] = useState(false)
 
+  const [selectApi, setSelectApi] = React.useState({
+    category: "0",
+    difficulty: "0"
+  })
   const [questions, setQuestions] = useState([])
   const [correctCount, setCorrectCount] = useState(0)
 
   // Style
   const correctStyle = { color: (correctCount < 4) ? '#ff0000' : '#00ae24' }
-
   useEffect(() => {
-    fetch("https://opentdb.com/api.php?amount=5&type=multiple&encode=base64")
+    fetch("https://opentdb.com/api.php?amount=5&category=" + selectApi.category + "&difficulty=" + selectApi.difficulty + "&type=multiple&encode=base64")
       .then(res => res.json())
       .then(data => {
         setQuestions(() => {
@@ -48,6 +51,14 @@ export default function App() {
   // Functions
   function startGameHandle() {
     setStartGame(prevStartGame => !prevStartGame)
+  }
+
+  function handleSelectChange(e) {
+    const { name, value } = e.target
+    setSelectApi(prevSelectApi => ({
+      ...prevSelectApi,
+      [name]: value
+    }))
   }
 
   function selectAnswer(e, c_answer, id) {
@@ -90,7 +101,7 @@ export default function App() {
       {
         !startGame
           ?
-          <Start startGame={startGameHandle} />
+          <Start startGame={startGameHandle} select={selectApi} handleChange={handleSelectChange} />
           :
           <div>
             {questionsElement.length != 0 ? questionsElement : <div class="lds-ripple"><div></div><div></div></div>}
