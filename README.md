@@ -7,8 +7,8 @@
 - [X] Pull 5 questions from the OTDB API
 - [X] Tally correct answers after "Check answers" is clicked
 - [X] Styled & polished
-- [ ] Select Category
-- [ ] Select Difficulty
+- [X] Select Category
+- [X] Select Difficulty
 
 ---
 
