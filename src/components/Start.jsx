@@ -5,6 +5,8 @@ export default function Start(props) {
             <p>I'm a puzzle of different topics</p>
 
             <div className="selectDiv">
+                <label className="hidden" htmlFor="category">Categories:</label>
+
                 <select
                     id="category"
                     value={props.select.category}
@@ -36,6 +38,9 @@ export default function Start(props) {
                     <option value="31">Entertainment: Japanese Anime &amp; Manga</option>
                     <option value="32">Entertainment: Cartoon &amp; Animations</option>
                 </select>
+
+
+                <label className="hidden" htmlFor="difficulty">Difficulties:</label>
 
                 <select
                     id="difficulty"
