@@ -95,6 +95,15 @@ export default function App() {
     window.scrollTo(0, 0)
   }
 
+  function handleReturnStart() {
+    setStartGame(prevStartGame => !prevStartGame)
+    setSelectApi({
+      category: "0",
+      difficulty: "0"
+    })
+    handlePlayAgain()
+  }
+
   const questionsElement = questions.map(question => ([<Question key={question.id} data={question} handleChange={selectAnswer} playAgain={playAgain} />]))
 
   return (
@@ -105,7 +114,7 @@ export default function App() {
           <Start startGame={startGameHandle} select={selectApi} handleChange={handleSelectChange} />
           :
           <div>
-            {questionsElement.length != 0 ? questionsElement : <div class="lds-ripple"><div></div><div></div></div>}
+            {questionsElement.length != 0 ? questionsElement : <div className="lds-ripple"><div></div><div></div></div>}
 
             {
               !playAgain
@@ -117,7 +126,8 @@ export default function App() {
                 <div className="playAgainBtnDiv">
                   {correctCount > 3 && <Confetti />}
                   <span className="score">You scored <span style={correctStyle}>{correctCount}/5</span> correct answers</span>
-                  <button className="btn-quiz" onClick={handlePlayAgain}>Play again</button>
+                  <button className="btn-quiz" onClick={handlePlayAgain}>Play again</button> <br className="hiddenBr" />
+                  <button className="btn-quiz btn-start" onClick={handleReturnStart}>Return to start</button>
                 </div>
             }
           </div>
